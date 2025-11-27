@@ -1,0 +1,17 @@
+syntax = "proto3";
+// This will be the name of the generated Rust file/module
+package msg_schema;
+
+message Header {
+  oneof msg {
+    Error error = 1;
+    Info info = 2;
+  }
+}
+
+message Error {
+  int32 error_no = 1;
+  string error_msg = 2;
+}
+
+message Info { int32 protocol_ver = 1; }

@@ -1,0 +1,23 @@
+[package]
+name = "proto_stream"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bytes = "1.11.0"
+futures = "0.3.31"
+prost = "0.14.1"
+prost-types = "0.14.1"
+tokio = { version = "1.48.0", features = ["full"] }
+tokio-util = { version = "0.7.17", features = ["full"] }
+
+[build-dependencies]
+prost-build = "0.14.1"
+
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/bin/client.rs"

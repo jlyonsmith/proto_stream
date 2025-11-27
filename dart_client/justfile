@@ -1,0 +1,8 @@
+list:
+    just --list
+
+install:
+    dart pub global activate protoc_plugin
+
+compile:
+    protoc --proto_path=../schemas --dart_out=lib/generated ../schemas/schema.proto
