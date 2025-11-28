@@ -1,6 +1,6 @@
 # Rust and Dart Protocol Buffers Stream Example
 
-This is example program shows how to stream [ProtoBuf](https://protobuf.dev/) messages over a `TcpStream` in Rust and Dart.
+This is example program shows how to stream [ProtoBuf](https://protobuf.dev/) messages over a `TcpStream` in Rust and `Socket` Dart.
 
 - Has separate client and server binaries for Rust, and a client for Dart
 - Uses the [`prost`](https://crates.io/crates/prost) crate for ProtoBuf support in Rust.
