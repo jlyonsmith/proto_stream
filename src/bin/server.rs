@@ -1,4 +1,4 @@
-use futures::stream::StreamExt;
+use futures::{sink::SinkExt, stream::StreamExt};
 use proto_stream::{ProstCodec, msg_schema::Header};
 use tokio::net::TcpListener;
 use tokio_util::codec::Framed;
@@ -12,6 +12,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     loop {
         let (socket, _) = listener.accept().await?;
+
         tokio::spawn(async move {
             let mut framed = Framed::new(socket, ProstCodec::<Header>::new());
 
@@ -20,6 +21,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 match frame {
                     Ok(msg) => {
                         println!("Received message: {:?}", msg);
+
+                        // Echo the message back to the client
+                        if let Err(e) = framed.send(msg).await {
+                            eprintln!("Error sending frame: {}", e);
+                            break;
+                        }
                     }
                     Err(e) => {
                         eprintln!("Error reading frame: {}", e);
