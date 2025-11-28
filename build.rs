@@ -21,7 +21,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("cargo:rerun-if-changed={}", schema_dir.to_str().unwrap());
 
     // Generate Rust code
-    prost_build::compile_protos(&schemas, &["schemas/"])?;
+    prost_build::compile_protos(&schemas, &[schema_dir.to_str().unwrap()])?;
 
     Ok(())
 }
